@@ -1,0 +1,7 @@
+nextcord
+opencv-python
+pytesseract
+tensorflow
+numpy
+matplotlib
+python-dotenv

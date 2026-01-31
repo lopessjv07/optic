@@ -6,6 +6,9 @@ from nextcord.ext import commands
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 from tensorflow.keras.models import load_model
+from dotenv import load_dotenv
+
+load_dotenv()
 
 intents = nextcord.Intents.default()
 intents.messages = True
@@ -13,13 +16,26 @@ intents.message_content = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
 # Carregar o modelo treinado para classificação de imagens ilícitas
-model = load_model('C:/Users/Seu_usuario/Downloads/meu_modelo.h5')
+# Usando caminho relativo baseado na raiz do projeto ou local do arquivo
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Assumindo que o arquivo está em botia/ e o modelo na raiz, sobe um nível
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'meu_modelo.h5')
+
+if os.path.exists(MODEL_PATH):
+    model = load_model(MODEL_PATH)
+    print(f"Modelo carregado de: {MODEL_PATH}")
+else:
+    print(f"ERRO: Modelo não encontrado em {MODEL_PATH}")
+    model = None
 
 # Lista de palavras proibidas para texto ilícito (tanto no chat quanto nas imagens)
 palavras_proibidas = ['palavras ilicitas']
 
 # Função para classificar imagem como lícita ou ilícita usando modelo treinado
 def classificar_imagem(caminho_imagem):
+    if model is None:
+        return "indefinido"
+        
     img = load_img(caminho_imagem, target_size=(64, 64))  # Carrega e redimensiona a imagem
     img = img_to_array(img)
     img = np.expand_dims(img, axis=0)
@@ -38,7 +54,8 @@ def verificar_palavras_ilicitas(texto):
 # Função para extrair texto de uma imagem usando OCR (Tesseract)
 def extrair_texto_imagem(caminho_imagem):
     # Configurar o caminho do Tesseract
-    pytesseract.pytesseract.tesseract_cmd = "C:/Users/Seu_usuario/AppData/Local/Programs/Tesseract-OCR/tesseract.exe"
+    # Tenta encontrar no path ou usa o padrão linux
+    pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
     
     # Ler e processar a imagem para melhorar a extração de texto
     imagem = cv2.imread(caminho_imagem)
@@ -49,8 +66,12 @@ def extrair_texto_imagem(caminho_imagem):
     imagem_suave = cv2.medianBlur(imagem_binarizada, 3)
 
     # Extrair texto usando Tesseract
-    texto = pytesseract.image_to_string(imagem_suave, config='--psm 3', lang='por')
-    return texto
+    try:
+        texto = pytesseract.image_to_string(imagem_suave, config='--psm 3', lang='por')
+        return texto
+    except Exception as e:
+        print(f"Erro no OCR: {e}")
+        return ""
 
 # Mostra quando o bot está funcionando
 @client.event
@@ -87,7 +108,8 @@ async def on_message(message):
                         print("Imagem lícita e sem texto ilícito.")
                 
                 # Remover a imagem após o processamento
-                os.remove(caminho_imagem)
+                if os.path.exists(caminho_imagem):
+                    os.remove(caminho_imagem)
 
     # Verificar se a mensagem de texto contém palavras ilícitas
     if verificar_palavras_ilicitas(message.content):
@@ -98,5 +120,8 @@ async def on_message(message):
     await client.process_commands(message)
 
 # Rodar o bot
-TOKEN = 'Seu_token_do_servidor_discord'
-client.run(TOKEN)
+TOKEN = os.getenv('DISCORD_TOKEN')
+if TOKEN:
+    client.run(TOKEN)
+else:
+    print("ERRO: Token não encontrado no arquivo .env")
