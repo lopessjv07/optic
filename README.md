@@ -79,16 +79,25 @@ Run the training script:
 ```
 This will generate a `meu_modelo.h5` file in the project root.
 
-### 2. Run the Bot
-Once the model is trained and `.env` is configured, verify the bot is added to your server and run:
+### 3. Run the Web Interface (Optional)
+To use the web dashboard with the AI testing tool:
 
-```bash
-./run_bot.sh
-# OR manually:
-# python botia/bot_discord.py
-```
+1.  **Start the Backend API**:
+    ```bash
+    # From project root
+    ./venv/bin/uvicorn api.main:app --reload --port 8000
+    ```
 
-The bot will print `Bot <Name> está funcionando!` when it's online.
+2.  **Start the Frontend**:
+    ```bash
+    cd web
+    npm install  # First time only
+    npm run dev
+    ```
+    Access `http://localhost:5173` in your browser.
+
+### 4. Note on AI Model
+The web interface requires the trained model `meu_modelo.h5` in the project root. If you haven't trained it yet, run `./train_model.sh` first.
 
 ## 🤝 Contribution
 
