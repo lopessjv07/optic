@@ -2,16 +2,16 @@
   --font-main: 'Inter', sans-serif;
   --font-display: 'Outfit', sans-serif;
   
-  --bg-dark: #050508;
-  --bg-card: rgba(20, 20, 25, 0.6);
-  --bg-card-hover: rgba(30, 30, 40, 0.8);
+  --bg-dark: #0a0b1e;
+    --bg-card: rgba(20, 20, 40, 0.6);
+    --bg-card-hover: rgba(30, 30, 60, 0.8);
   
-  --primary: #8b5cf6;
-  --primary-glow: rgba(139, 92, 246, 0.6);
-  --secondary: #6366f1;
+  --primary: #00d2ff;
+    --primary-glow: rgba(0, 210, 255, 0.6);
+    --secondary: #6200ea;
   
   --text-main: #ffffff;
-  --text-muted: #9ca3af;
+  --text-muted: #a0a6c0;
   
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);
 }

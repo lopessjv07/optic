@@ -1,108 +1,120 @@
-# Optic - Discord Content Moderation Bot
+# Optic - Bot de Moderação de Conteúdo para Discord
 
-Optic is an intelligent Discord bot designed to moderate content automatically using Artificial Intelligence. It detects and removes illicit images and text, ensuring a safer community environment.
+**Optic** é um bot inteligente para Discord projetado para moderar conteúdo visual e textual automaticamente usando Inteligência Artificial. Ele atua como um guardião, garantindo que sua comunidade permaneça segura e saudável.
 
-## 🚀 Features
+## 🐔 A Analogia: Galinhas vs. Sapos 🐸
 
-*   **Image Classification (AI)**: Uses a Convolutional Neural Network (CNN) built with **TensorFlow/Keras** to classify images as "Licit" (Safe) or "Illicit" (Unsafe).
-*   **Optical Character Recognition (OCR)**: Extracts text from images using **Tesseract** to detect prohibited words hidden within images.
-*   **Text Moderation**: Automatically deletes messages containing banned words.
-*   **Real-time Protection**: Instantly analyzes every message and attachment sent to the server.
+Para tornar o funcionamento da IA mais intuitivo, utilizamos uma analogia simples:
 
-## 🛠️ Technology Stack
+*   **O Galinheiro (Servidor)**: É o seu servidor do Discord, um lugar que deve ser seguro e produtivo.
+*   **As Galinhas (Conteúdo Lícito)**: Representam todas as imagens e textos permitidos, saudáveis e bem-vindos.
+*   **Os Sapos (Conteúdo Ilícito)**: Representam conteúdo tóxico, NSFW, violento ou proibido que tenta invadir o galinheiro.
 
-*   **Language**: Python 3
-*   **Discord Library**: Nextcord
-*   **Machine Learning**: TensorFlow, Keras, NumPy
-*   **Image Processing**: OpenCV (cv2)
-*   **OCR**: Pytesseract (Tesseract OCR wrapper)
+O **Optic** é o fazendeiro atento que usa "visão de raio-x" (IA) para identificar instantaneamente se algo é uma Galinha ou um Sapo, removendo os sapos antes que eles causem problemas.
 
-## 📂 Project Structure
+## 🚀 Funcionalidades
 
-*   `botia/bot_discord.py`: Main bot application logic.
-*   `botia/treinamento.py`: Script to train the AI model (CNN).
-*   `train_model.sh`: Helper script to run the training process.
-*   `run_bot.sh`: Helper script to start the bot.
-*   `requirements.txt`: Python dependencies.
+*   **Classificação de Imagem (IA)**: Utiliza uma Rede Neural Convolucional (CNN) construída com **TensorFlow/Keras** para "enxergar" imagens e classificá-las.
+*   **Leitura de Texto em Imagens (OCR)**: Usa **Tesseract** para extrair textos ocultos dentro de memes ou prints, detectando palavras proibidas que filtros de texto comuns não pegam.
+*   **Moderação de Texto**: Remove automaticamente mensagens de texto contendo palavras da lista negra.
+*   **Proteção em Tempo Real**: Analisa cada mensagem e anexo enviado no servidor instantaneamente.
+*   **Interface Web**: Dashboard moderno para testar a IA (Galo vs. Sapo) e visualizar o status.
 
-## ⚙️ Installation & Setup
+## 🛠️ Stack Tecnológica
 
-### Prerequisites
+O projeto é "Mágica" pura, construída com:
 
-1.  **Python 3.8+** installed.
-2.  **Tesseract OCR** installed on your system:
+*   **Cérebro (IA)**: Python 3, TensorFlow, Keras.
+*   **Olhos (Visão Computacional)**: OpenCV (cv2).
+*   **Óculos de Leitura (OCR)**: Tesseract OCR.
+*   **Corpo (Bot)**: Nextcord (Biblioteca Discord).
+*   **Frontend (Web)**: React, Vite, CSS (Glassmorphism), Lucide Icons.
+*   **Backend (API)**: FastAPI/Uvicorn.
+
+## 📂 Estrutura do Projeto
+
+*   `botia/bot_discord.py`: Lógica principal do bot.
+*   `botia/treinamento.py`: Script para treinar o modelo de IA (CNN).
+*   `web/`: Código fonte da interface web (React).
+*   `api/`: API Backend que serve o modelo para a web.
+*   `dataset/`: Pasta onde devem ficar as imagens de treino (`train/licit`, `train/illicit`).
+
+## ⚙️ Instalação e Configuração
+
+### Pré-requisitos
+
+1.  **Python 3.8+** instalado.
+2.  **Tesseract OCR** instalado no sistema:
     *   **Linux (Ubuntu/Debian)**: `sudo apt install tesseract-ocr`
-    *   **Windows**: Download and install from [UB-Mannheim](https://github.com/UB-Mannheim/tesseract/wiki).
-3.  **Git** installed.
+    *   **Windows**: Baixe e instale do [UB-Mannheim](https://github.com/UB-Mannheim/tesseract/wiki).
+3.  **Node.js & npm** (para a interface web).
 
-### Step-by-Step Guide
+### Passo a Passo
 
-1.  **Clone the Repository**
+1.  **Clone o Repositório**
     ```bash
     git clone https://github.com/lopessjv07/optic.git
     cd optic
     ```
 
-2.  **Create and Activate Virtual Environment**
+2.  **Crie e Ative o Ambiente Virtual**
     ```bash
     python3 -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    source venv/bin/activate  # No Windows: venv\Scripts\activate
     ```
 
-3.  **Install Dependencies**
+3.  **Instale as Dependências Python**
     ```bash
     pip install -r requirements.txt
     ```
 
-    *Note: If `requirements.txt` is missing specific ML libraries, ensure you install: `nextcord tensorflow numpy opencv-python pytesseract python-dotenv`*
-
-4.  **Configure Environment Variables**
-    Create a `.env` file in the root directory and add your Discord Bot Token:
+4.  **Configure as Variáveis de Ambiente**
+    Crie um arquivo `.env` na raiz e adicione seu Token do Discord:
     ```env
-    DISCORD_TOKEN=your_discord_bot_token_here
+    DISCORD_TOKEN=seu_token_aqui
     ```
 
-5.  **Prepare Dataset (For Training)**
-    *   Create a `train` folder with subfolders for each class (e.g., `train/licit` and `train/illicit`).
-    *   Create a `test` folder with similar structure for validation.
+## 🧠 Como Usar
 
-## 🧠 How to Use
+### 1. Treinar o Modelo
+Antes de rodar o bot, você precisa ensinar a IA o que é bom e o que é ruim.
 
-### 1. Train the Model
-Before running the bot, you need to train the AI model so it learns to distinguish between images.
-
-Run the training script:
+Coloque suas imagens em `dataset/train/licit` e `dataset/train/illicit`, depois rode:
 ```bash
 ./train_model.sh
-# OR manually:
+# OU manualmente:
 # python botia/treinamento.py
 ```
-This will generate a `meu_modelo.h5` file in the project root.
+Isso gera o arquivo `meu_modelo.h5` (o cérebro da IA).
 
-### 3. Run the Web Interface (Optional)
-To use the web dashboard with the AI testing tool:
+### 2. Rodar o Bot do Discord
+Com o modelo treinado:
+```bash
+./run_bot.sh
+# OU:
+# python botia/bot_discord.py
+```
 
-1.  **Start the Backend API**:
+### 3. Rodar a Interface Web (Dashboard)
+Para testar a IA visualmente:
+
+1.  **Inicie a API (Terminal 1)**:
     ```bash
-    # From project root
     ./venv/bin/uvicorn api.main:app --reload --port 8000
     ```
 
-2.  **Start the Frontend**:
+2.  **Inicie o Site (Terminal 2)**:
     ```bash
     cd web
-    npm install  # First time only
+    npm install  # Apenas na primeira vez
     npm run dev
     ```
-    Access `http://localhost:5173` in your browser.
+    Acesse `http://localhost:5173` no navegador.
 
-### 4. Note on AI Model
-The web interface requires the trained model `meu_modelo.h5` in the project root. If you haven't trained it yet, run `./train_model.sh` first.
+## 🤝 Contribuição
 
-## 🤝 Contribution
+Contribuições são bem-vindas! Sinta-se à vontade para fazer um fork e enviar pull requests.
 
-Contributions are welcome! Feel free to fork the repository and submit pull requests.
+## 📄 Licença
 
-## 📄 License
-
-This project is open-source.
+Este projeto é open-source.

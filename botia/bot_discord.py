@@ -29,7 +29,27 @@ else:
     model = None
 
 # Lista de palavras proibidas para texto ilícito (tanto no chat quanto nas imagens)
-palavras_proibidas = ['palavras ilicitas']
+palavras_proibidas = ['bosta','b0sta','b0s7a','b*sta',
+  'merda','m3rda','m3rd4','m€rda',
+  'porra','p0rra','pohra','p0h@','p0rr@',
+  'caralho','c4ralho','karalho','krl','k@ralho',
+  'puta','pvt@','pu7a','p#ta',
+  'viado','v1ado','v14d0','v!ado',
+  'arrombado','4rrombado','ar0mbado','arr0mb@do',
+  'cu','c#','c*','cú',
+  'buceta','bvceta','buc3ta','bucet@',
+  'pau','p4u','paü',
+  'pica','p1ca','p!ca',
+  'foder','f0der','f0d3r','fud3r',
+  'foda','f0da','f0d@',
+  'desgraça','d3sgraca','desgr4ça','desgraç@',
+  'inferno','1nferno','inf3rno',
+  'idiota','1diota','idi0ta',
+  'imbecil','1mbecil','imb3cil',
+  'retardado','r3tardado','ret4rdado',
+  'escroto','3scroto','escrot0',
+  'safado','s4fado','saf4do','s@fado',
+  'sucudo','sucud0','54cudo','sucud@']
 
 # Função para classificar imagem como lícita ou ilícita usando modelo treinado
 def classificar_imagem(caminho_imagem):
@@ -97,7 +117,7 @@ async def on_message(message):
                 resultado_imagem = classificar_imagem(caminho_imagem)
                 if resultado_imagem == "ilícita":
                     await message.delete()
-                    await message.channel.send("⚠️ Imagem removida por ser considerada ilícita!")
+                    await message.channel.send("⚠️ Sapos não são bem vindos por aqui! 🐸🚫")
                 else:
                     # Extrair o texto da imagem e verificar se contém palavras ilícitas
                     texto_extraido = extrair_texto_imagem(caminho_imagem)

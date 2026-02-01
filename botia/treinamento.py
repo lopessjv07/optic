@@ -14,8 +14,8 @@ os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.join(BASE_DIR, '..')
 
-TRAIN_DIR = os.path.join(PROJECT_ROOT, 'train')
-TEST_DIR = os.path.join(PROJECT_ROOT, 'test')
+TRAIN_DIR = os.path.join(PROJECT_ROOT, 'dataset', 'train')
+TEST_DIR = os.path.join(PROJECT_ROOT, 'dataset', 'test')
 MODEL_PATH = os.path.join(PROJECT_ROOT, 'meu_modelo.h5')
 
 # 1. Pré-processamento de dados
@@ -92,7 +92,7 @@ if train_generator and validation_generator:
     history = model.fit(
         train_generator,
         steps_per_epoch=len(train_generator),  # Número de imagens de treinamento dividido pelo batch_size
-        epochs= 128,  # Número de épocas
+        epochs= 32,  # Número de épocas
         validation_data=validation_generator,
         validation_steps=len(validation_generator)  # Número de imagens de validação dividido pelo batch_size
     )
