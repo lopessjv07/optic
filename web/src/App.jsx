@@ -76,8 +76,8 @@ function App() {
             <span>Segura e Saudável</span>
           </h1>
           <p>
-            O Optic utiliza Inteligência Artificial avançada para detectar e remover 
-            conteúdo ilícito em imagens e texto automaticamente.
+            O Optic utiliza Inteligência Artificial avançada para diferenciar
+            <strong>Galinhas</strong> de <strong>Sapos</strong>. O objetivo é manter o ambiente limpo de sapos!
           </p>
           <a href={discordLink} target="_blank" rel="noopener noreferrer">
             <button className="cta-button">Acessar Servidor</button>
@@ -86,7 +86,7 @@ function App() {
 
         <section className="demo-section">
           <h2>Teste a IA Agora</h2>
-          <p>Arraste uma imagem para verificar se ela é lícita ou ilícita.</p>
+          <p>Arraste uma imagem para verificar se é um Galo/Galinha (Bem-vindo) ou um Sapo (Indesejado).</p>
 
           <div className="demo-container">
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
@@ -120,11 +120,15 @@ function App() {
 
             {result && (
               <div className={`result-card ${result.is_licit ? 'safe' : 'unsafe'}`}>
-                <h3>Resultado: {result.is_licit ? "LÍCITA ✅" : "ILÍCITA ⚠️"}</h3>
+                <h3>
+                  {result.is_licit
+                    ? "Galos ou galinhas são bem vindos! 🐔"
+                    : "Sapos não são bem vindos por aqui! 🐸🚫"}
+                </h3>
                 <p>Confiança: {(result.confidence * 100).toFixed(2)}%</p>
                 <div className="confidence-bar">
                   <div
-                    className="fill"
+                    className="fill" 
                     style={{ width: `${result.confidence * 100}%` }}
                   ></div>
                 </div>
