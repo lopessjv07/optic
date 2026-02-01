@@ -14,7 +14,8 @@ import {
   FileImage,
   Instagram,
   Linkedin,
-  Github
+  Github,
+  RefreshCw
 } from 'lucide-react'
 import './App.css'
 
@@ -76,6 +77,13 @@ function App() {
     }
   }
 
+  const handleReset = () => {
+    setFile(null)
+    setPreview(null)
+    setResult(null)
+    setError(null)
+  }
+
   return (
     <div className="app-container">
       <header>
@@ -120,22 +128,30 @@ function App() {
               )}
             </div>
 
+
+
             <div className="controls">
-              <button
-                className="analyze-button"
-                onClick={handleAnalyze}
-                disabled={!file || loading}
-              >
-                {loading ? (
-                  <>
-                    <Search className="spin" size={20} /> Analisando...
-                  </>
-                ) : (
-                  <>
-                    <Search size={20} /> Analisar Imagem
-                  </>
-                )}
-              </button>
+              {!result && !error ? (
+                <button
+                  className="analyze-button"
+                  onClick={handleAnalyze}
+                  disabled={!file || loading}
+                >
+                  {loading ? (
+                    <>
+                      <Search className="spin" size={20} /> Analisando...
+                    </>
+                  ) : (
+                    <>
+                      <Search size={20} /> Analisar Imagem
+                    </>
+                  )}
+                </button>
+              ) : (
+                <button className="reset-button" onClick={handleReset}>
+                  <RefreshCw size={20} /> Verificar Outra Imagem
+                </button>
+              )}
             </div>
 
             {error && (

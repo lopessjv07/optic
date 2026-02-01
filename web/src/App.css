@@ -175,6 +175,25 @@ header {
   cursor: not-allowed;
 }
 
+.reset-button {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 15px rgba(98, 0, 234, 0.3);
+}
+
+.reset-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(98, 0, 234, 0.5);
+}
 .result-card {
   background: var(--bg-card);
   padding: 1.5rem;
