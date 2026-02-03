@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/main.py" },
+    { "source": "/(.*)", "destination": "/web/index.html" }
+  ],
+  "functions": {
+    "api/main.py": {
+      "includeFiles": "meu_modelo.h5"
+    }
+  }
+}

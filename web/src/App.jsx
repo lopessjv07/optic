@@ -54,8 +54,10 @@ function App() {
     formData.append('file', file)
 
     try {
-      // In production, this URL should be configurable
-      const response = await fetch('http://localhost:8000/predict', {
+      // Use environment variable for API URL or fallback to localhost
+      // Use relative path for API to work with Vercel rewrites and Vite proxy
+      const apiUrl = '/api'
+      const response = await fetch(`${apiUrl}/predict`, {
         method: 'POST',
         body: formData,
       })

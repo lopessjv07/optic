@@ -1,0 +1,6 @@
+nextcord
+tensorflow-cpu
+numpy
+opencv-python-headless
+pytesseract
+python-dotenv
