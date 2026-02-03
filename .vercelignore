@@ -1,0 +1,7 @@
+api/
+botia/
+meu_modelo.h5
+Dockerfile
+run_bot.sh
+train_model.sh
+requirements.txt
