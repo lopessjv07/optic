@@ -55,8 +55,8 @@ function App() {
 
     try {
       // Use environment variable for API URL or fallback to localhost
-      // Use relative path for API to work with Vercel rewrites and Vite proxy
-      const apiUrl = '/api'
+      // Use environment variable for API URL (separate deployment) or fallback to '/api' (monorepo/proxy)
+      const apiUrl = import.meta.env.VITE_API_URL || '/api'
       const response = await fetch(`${apiUrl}/predict`, {
         method: 'POST',
         body: formData,
