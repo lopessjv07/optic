@@ -1,7 +1,13 @@
 backend/
 botia/
 meu_modelo.h5
+*.h5
 Dockerfile
 run_bot.sh
 train_model.sh
 requirements.txt
+dataset/
+venv/
+.venv/
+__pycache__/
+*.pyc

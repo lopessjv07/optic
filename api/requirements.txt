@@ -1,0 +1,6 @@
+fastapi
+python-multipart
+pillow
+numpy
+httpx
+tflite-runtime
